@@ -9,11 +9,11 @@ type Summary = {
     IMPS: number,
     OVER: number,
     SPED: number,
-    STIM: number,
-    ETIM: number,
+    STIM: TimeLike,
+    ETIM: TimeLike,
     OPID: string,
     UID: number,
-    ts: number,
+    ts: TimeLike,
     TL1: number,
     TMOV: number,
     TNOL: number,
@@ -27,9 +27,9 @@ const MAX_SAFETY_VIOLATIONS = 7;
 const MIN_SAFETY_VIOLATIONS = 1;
 export default (duration: number): Summary => {
     const validOPID = ["OP1", "OP2", "OP3", "OP4", "OP5"]
-    const startMs = Date.now();
-    const endMs = startMs + (duration * 1000);
-    const ts = endMs + getRandomInRange(1, 1000)
+    const startMs = new Date();
+    const endMs = new Date(startMs.getTime() + duration * 1000);
+    const ts = startMs;
     const OPID = validOPID[getRandomInRange(0, validOPID.length - 1)]
     const UID = getRandomInRange(1, 150)
     const TL1 = getRandomInRange(1, (duration / 5))

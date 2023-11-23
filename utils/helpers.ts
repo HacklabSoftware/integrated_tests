@@ -28,6 +28,7 @@ export async function processProductivityEvent(eventName: string, iterator: numb
     while (iterator > 0) {
         console.log("Saving productivity event", eventName, "@", new Date())
         await makeRequest(trakrUrl, "POST", { event: eventName, ts: Date.now(), OPID: sentPacket.OPID, UID: sentPacket.UID });
+        await sleep(1000 * (offset - 1)) // account for 1 second sleep in makeRequest
         if (eventName === "LOAD") {
             sentPacket.TMOV += offset;
         }

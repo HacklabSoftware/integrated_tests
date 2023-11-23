@@ -64,13 +64,15 @@ console.log(`Test started at ${date} ${time}`);
         };
         for (let eventName in eventIterators) {
             await processProductivityEvent(eventName, eventIterators[eventName], sentPacket, OFFSET);
-            await sleep(1000 * (OFFSET - 1)) // Sleep for 9 seconds to account for the 1 second sleep in makeRequest
         }
 
         console.log("All productivity events processed")
         console.timeEnd("Productivity event processing time")
+        summaryPacket.ETIM = new Date()
+        console.log(summaryPacket)
         console.log("Saving summary packet @", new Date())
-        makeRequest(`${url}/api/v1/${deviceToken}/telemetry`, "POST", summaryPacket);
+        await makeRequest(`${url}api/v1/${deviceToken}/telemetry`, "POST", summaryPacket);
+        console.log("Processed data", { summaryPacket, sentPacket })
 
     }
 })()

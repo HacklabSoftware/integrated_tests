@@ -1,6 +1,10 @@
 # integration
 
-To install dependencies:
+## Run with bun
+
+To install bun follow the instructions at [bun.sh](https://bun.sh)
+
+To install dependencies using bun
 
 ```bash
 bun install
@@ -12,4 +16,16 @@ To run:
 bun run index.ts
 ```
 
-This project was created using `bun init` in bun v1.0.2. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+## Run with docker
+
+To build docker
+
+```bash
+docker build -t test-script .
+```
+
+To run docker
+
+```bash
+docker run test-script
+```

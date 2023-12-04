@@ -29,3 +29,4 @@ To run docker
 ```bash
 docker run test-script
 ```
+**One can change configurations in config.s file**
